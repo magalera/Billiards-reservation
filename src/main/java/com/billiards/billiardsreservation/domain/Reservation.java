@@ -13,6 +13,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reservation {
+    private Long id;
     private LocalDate date;
     private LocalTime time;
     private ReservationType type;
