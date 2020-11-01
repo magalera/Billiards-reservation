@@ -17,29 +17,30 @@ public class ReservationController {
     @Autowired
     private ReservationMapper mapper;
 
-    @PostMapping(value = "create")
+    @PostMapping
     public void create(@RequestBody ReservationDto reservationDto) {
         service.save(mapper.mapToReservation(reservationDto));
     }
 
-    @GetMapping(value = "get/{id}")
+    @GetMapping(value = "/{id}")
     public ReservationDto get(@PathVariable Long id) throws ReservationNotFoundException {
-        return mapper.mapToReservationDto(service.get(id).orElseThrow(ReservationNotFoundException::new));
+        return mapper.mapToReservationDto(service.findById(id).orElseThrow(ReservationNotFoundException::new));
     }
 
-    @GetMapping(value = "get_all")
+    @GetMapping(value = "/get_all")
     public Set<ReservationDto> getAll() {
         return mapper.mapToReservationsDto(service.getAllReservations());
     }
 
-    @PutMapping(value = "edit")
+    @PutMapping
     public ReservationDto edit(@RequestBody ReservationDto reservationDto) {
         Reservation reservation = service.save(mapper.mapToReservation(reservationDto));
         return mapper.mapToReservationDto(reservation);
     }
 
-    @DeleteMapping(value = "cancel")
-    public void cancel(@RequestBody Long id) {
+    @DeleteMapping(value = "/{id}")
+    public void cancel(@PathVariable Long id) throws ReservationNotFoundException {
+        service.findById(id).orElseThrow(ReservationNotFoundException::new);
         service.delete(id);
     }
 }
