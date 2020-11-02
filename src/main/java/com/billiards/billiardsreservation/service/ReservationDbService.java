@@ -28,4 +28,8 @@ public class ReservationDbService {
     public void delete(Long id){
         reservationRepository.deleteById(id);
     }
+
+    public void deleteAll(Set<Reservation> reservations){
+        reservationRepository.deleteAll(reservations);
+    }
 }
