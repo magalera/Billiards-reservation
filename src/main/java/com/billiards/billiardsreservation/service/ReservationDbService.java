@@ -17,19 +17,19 @@ public class ReservationDbService {
         return reservationRepository.findAll();
     }
 
-    public Optional<Reservation> findById(Long id){
+    public Optional<Reservation> findById(Long id) {
         return reservationRepository.findById(id);
     }
 
-    public Reservation save(Reservation reservation){
+    public Reservation save(Reservation reservation) {
         return reservationRepository.save(reservation);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         reservationRepository.deleteById(id);
     }
 
-    public void deleteAll(Set<Reservation> reservations){
+    public void deleteAll(Set<Reservation> reservations) {
         reservationRepository.deleteAll(reservations);
     }
 }
