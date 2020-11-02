@@ -61,6 +61,7 @@ public class ReservationDbServiceTestSuite {
         Optional<Reservation> actual = service.findById(saved.getReservationId());
 
         //Then
+        Assert.assertTrue(actual.isPresent());
         Assert.assertEquals(reservation.getReservationId(), actual.get().getReservationId());
         Assert.assertEquals(reservation.getDate(), actual.get().getDate());
         Assert.assertEquals(reservation.getTime(), actual.get().getTime());
@@ -73,7 +74,7 @@ public class ReservationDbServiceTestSuite {
     @Test
     public void testCreate() throws ReservationNotFoundException {
         //Given
-        Reservation reservation = new Reservation(null, LocalDate.of(2020, 11, 02), LocalTime.of(5, 30), ReservationType.TABLE);
+        Reservation reservation = new Reservation(null, LocalDate.of(2020, 11, 2), LocalTime.of(5, 30), ReservationType.TABLE);
 
         //When
         Reservation actual = service.save(reservation);
@@ -93,7 +94,7 @@ public class ReservationDbServiceTestSuite {
     @Test
     public void testDelete() {
         //Given
-        Reservation reservation = new Reservation(null, LocalDate.of(2020, 11, 02), LocalTime.of(5, 30), ReservationType.TABLE);
+        Reservation reservation = new Reservation(null, LocalDate.of(2020, 11, 2), LocalTime.of(5, 30), ReservationType.TABLE);
 
         //When
         Reservation actual = service.save(reservation);
